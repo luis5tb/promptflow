@@ -1,0 +1,1 @@
+include openshift_support/yamls/*.yaml

@@ -1,0 +1,45 @@
+openshift_support.tools.ocp_llm.ocp_llm:
+  function: ocp_llm
+  module: openshift_support.tools.ocp_llm
+  name: OpenShiftLLM
+  description: OpenShift AI LLM
+  type: custom_llm
+  icon: 
+    data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADC0lEQVR4nI1ST2ibZRx+fr/3/b7k69pmXdet1Ng2TZxdXOlqxkBQo0Nhohdh6dnDUIp4UUFQZLqTlIl49bKTMCweBA8DwS4gUjfDtq5rM8aaZtok3Voz6Z/ky/e9789DW6k7+dyew8PD84ewBwIwAXYunj7Q6bqnjcgYRDxFKBmLnxPl2esAMJ3N6pfyeUOA0K74O+TUOKZMMTFy1iP6pIP1YJQYAGAhWA2DUIBvHb/1QbxSXNvV0X/Eg8c+Pazd8wbAIxPOWMFlIqxDZIyJxofcqLvQ8os1tF8wZK6+ujhzSwtyijBl7g4cey7K+vymtWha+Si1NDu5N15pYPTLUhgeqcKd2Efhu1toLQEgfQUPCACEaeKg0lIL/W9SS7cmBTmF7AMq5DdoHe3SJaUySTTXJuL0lu4+u9MZEQD8nsk4sbVW5YB2Di6E/EUjShfqxcFHOUzZnZyyMpDujWlbjRChaPjMgt925c3KtToDwIlCIdiC+vBmqFZ8ptd1gzvGMWU+23YQADhcnq9tGHvupnGqAXuXeiPBKdruF1QbenqkmTz68b2hoxO7maezWS0AC8Bz6bQrAM2kTnbOJ47/tZw8Ln8MPjMKAJoAeWjtWxHPe7+7uXn9lyfHfrgPDy/n85V/G5yfbwlA3WHjYp/jdi0HrWs3lm7P7fwGWB5K97dLMPknIsPrFBl1rF2Jsf2KLV0Wsg1rbZqZ3osp59SGMSZgevGpezd+3V5wD75One58w1QvdSv1mkuMug0RiKCLNRwirJqg2hR5+0hp9sfd1xIAygH8SibD7xQKAQAsJEbOREE5A4wIJKpAZQX+6aFpXjxxv1g9h6z+HHmD/wP1GKfH+XDfcLeN+E9IEKxBqR7FvOUYbne1rNaBv32fO3o8+Cc3Y5sFr+6sGuM5oaNZtRwS8SnZnzgLQg9B+gTUgEgHBNPE9Py2hXwvIp4AHhFZAfZrkd+M6DZF4RYl+5MZsEkRUGuG4dUo6RdEwVMhVYTpkLV0B4xDbLkc6KCdmd3FxcXb8Xh8/75GI/gHzNlkQL7p2xQAAAAASUVORK5CYII=
+  default_prompt: |
+    # system:
+    You are a helpful assistant.
+
+    # user:
+    {{question}}
+  inputs:
+    connection:
+      type:
+        - CustomConnection
+      custom_type:
+        - OCPConnection
+      ui_hints:
+        text_box_size: lg
+    model:
+      type:
+        - string
+      enabled_by: connection
+      enabled_by_type:
+      - OCPConnection
+      - CustomConnection
+      allow_manual_entry: true
+      is_multi_select: false
+      ui_hints:
+        text_box_size: lg
+    temperature:
+      default: '0.1'
+      type:
+        - double
+      ui_hints:
+        text_box_size: xs
+    max_tokens:
+      default: '100'
+      type:
+        - int
+      ui_hints:
+        text_box_size: xs
